@@ -5,14 +5,10 @@ pace = 0.05
 
 # goes from 1s to 4s : time to process all messages
 timer = 2.5
+MIN = 1
+MAX = 4
 
-
-def update_pace():
-    global pace
-    pace += 0.01
-
-    if pace > 1:
-        pace = 1
+MAX_PACE = 1
 
 
 def void():
@@ -20,7 +16,11 @@ def void():
     if utils.DEBUG_ALL or utils.DEBUG_FCT:
         print(f"DEBUG: FUNC: void")
 
-    update_pace()
+    global pace
+    pace += 0.01
+
+    if pace > MAX_PACE:
+        pace = MAX_PACE
 
 
 def upward():
@@ -28,15 +28,11 @@ def upward():
     if utils.DEBUG_ALL or utils.DEBUG_FCT:
         print("DEBUG: FUNC: upward")
 
-    update_pace()
-
 
 def left():
     # Moves character one left
     if utils.DEBUG_ALL or utils.DEBUG_FCT:
         print("DEBUG: FUNC: left")
-
-    update_pace()
 
 
 def downward():
@@ -44,15 +40,11 @@ def downward():
     if utils.DEBUG_ALL or utils.DEBUG_FCT:
         print("DEBUG: FUNC: downward")
 
-    update_pace()
-
 
 def right():
     # Moves character one right
     if utils.DEBUG_ALL or utils.DEBUG_FCT:
         print("DEBUG: FUNC: right")
-
-    update_pace()
 
 
 def inventory():
@@ -60,23 +52,17 @@ def inventory():
     if utils.DEBUG_ALL or utils.DEBUG_FCT:
         print("DEBUG: FUNC: inventory")
 
-    update_pace()
-
 
 def enter():
     # Validates current action
     if utils.DEBUG_ALL or utils.DEBUG_FCT:
         print("DEBUG: FUNC: enter")
 
-    update_pace()
-
 
 def back():
     # Cancels current action
     if utils.DEBUG_ALL or utils.DEBUG_FCT:
         print("DEBUG: FUNC: back")
-
-    update_pace()
 
 
 def chaos():
@@ -91,7 +77,7 @@ def chaos():
     timer -= pace
     pace = 0.05
 
-    timer = timer if timer >= 1 else 1
+    timer = timer if timer >= MIN else MIN
 
 
 def order():
@@ -106,11 +92,4 @@ def order():
     timer += pace
     pace = 0.05
 
-    timer = timer if timer <= 4 else 4
-
-# def forward():
-#     pass
-
-
-# def forward():
-#     pass
+    timer = timer if timer <= MAX else MAX

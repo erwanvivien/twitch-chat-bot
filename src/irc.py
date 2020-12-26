@@ -19,6 +19,7 @@ channel = "#xiaojiba"
 botUsername = "EMU_DS_chat_bot"
 
 # Get this from https://twitchapps.com/tmi/ - keep 'oauth:' in the file
+# example: oauth:abcdefghijklmnopqrstuvwxyz1234
 password = get_content("irc_pass")
 
 
